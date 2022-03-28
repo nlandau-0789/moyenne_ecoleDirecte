@@ -9,8 +9,8 @@ function insererMoyenne(matiere){
     var num = 0;
     var denom = 0;
     for (var i = 0; i < notes.length; i++) {
-        if (isNaN(notes[i].querySelector("span.valeur").innerText.replace(",",".").split(" ")[0])){continue;}
         var note = parseFloat(notes[i].querySelector("span.valeur").innerText.replace(",",".").split(" ")[0]);
+        if (isNaN(note)){continue;}
         if (notes[i].querySelector("sub")) {
             note /= parseFloat(notes[i].querySelector("sub").innerText.trim());
         } else {
