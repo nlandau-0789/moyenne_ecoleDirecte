@@ -3,6 +3,10 @@ String.prototype.trim = function()
         temp = String(this).replace("(", "").replace(")", "").replace(" ", "").replace("/","");
         return temp;
     };
+
+var moyGenNum = 0;
+var moyGenDenom = 0;
+
 function insererMoyenne(matiere){
     var notes = matiere.children[3].children;
     var moyenne = matiere.children[2];
@@ -25,6 +29,9 @@ function insererMoyenne(matiere){
         denom += coeff;
     }
     moyenne.innerText = (num / denom) * 20;
+    var moyCoeff = parseFloat(matiere.children[1].innerText.trim())
+    moyGenNum += (num / denom) * moyCoeff;
+    moyGenDenom += moyCoeff;
 }
 
 matieres = document.querySelectorAll("tr.ng-star-inserted");
@@ -32,3 +39,8 @@ matieres = document.querySelectorAll("tr.ng-star-inserted");
 for (var i = 0; i < matieres.length-1; i++) {
     insererMoyenne(matieres[i]);
 }
+
+var moyGen = document.createElement("a");
+moyGen.innerText =`Moyenne générale : ${(moyGenNum / moyGenDenom) * 20}`;
+
+document.querySelector("#encart-notes").insertBefore(moyGen, document.querySelector("#encart-notes > div.bloc-legende.clear.hidden-print.ng-star-inserted"))
