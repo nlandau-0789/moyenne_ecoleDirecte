@@ -29,6 +29,7 @@ function insererMoyenne(matiere){
         denom += coeff;
     }
     moyenne.innerText = (num / denom) * 20;
+    if(num === 0){return}
     var moyCoeff = parseFloat(matiere.children[1].innerText.trim())
     moyGenNum += (num / denom) * moyCoeff;
     moyGenDenom += moyCoeff;
